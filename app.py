@@ -12,12 +12,15 @@ def hello():
 def fetch_exp():
     if request.method == "POST":
         name = request.form["name"]
+        if exp=="":
+            string = "Atleast tell us your experience" 
+        else:
+            string = ""
         try:
-            exp = request.form["exp"]
-        except: 
-            exp = 0
-        sal = marks.salary_prediction(float(exp))
-    return render_template("sub.html", sal = sal, name = name) 
+            sal = marks.salary_prediction(float(exp))
+        except:
+            sal = 0
+    return render_template("sub.html", sal = sal, name = name, string = string)
    
 if __name__ == "__main__":
     app.run(debug=True)
