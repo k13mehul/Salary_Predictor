@@ -12,7 +12,10 @@ def hello():
 def fetch_exp():
     if request.method == "POST":
         name = request.form["name"]
-        exp = request.form["exp"]
+        try:
+            exp = request.form["exp"]
+        except: 
+            exp = 0
         sal = marks.salary_prediction(float(exp))
     return render_template("sub.html", sal = sal, name = name) 
    
